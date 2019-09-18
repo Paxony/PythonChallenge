@@ -9,8 +9,6 @@ Total_Months=[]
 Total_Profits=[]
 Average_Change=[]
 greatest_decrease=0
-greatest_dec_date=" "
-greatest_inc_date=" "
 greatest_increase=0
 
 #Givin access to read the CSV
@@ -32,14 +30,7 @@ with open(filecsv, newline='') as filecsv:
     # calculate average revenue change
         changebymonths = sum(Average_Change) / len(Average_Change)
 
-# greatest increase in revenue
-#greatest_increase = max([changebymonths])
-# greatest decrease in revenue
-#greatest_decrease = min([changebymonths])
-
- #aquí si le quito los corchetes me sale un error de "float is not iterable", pero no me corre el max y el min
-
-
+# Printing to terminal
 print(f"Total Months:{len(Total_Months)}")
 print(f"Total Profits:{sum(Total_Profits)}")
 print("Average change: " + "$" + str(changebymonths))
