@@ -8,10 +8,10 @@ filecsv=os.path.join("..","PythonChallenge","PyBank","PyBank_Resources_budget_da
 Total_Months=[]
 Total_Profits=[]
 Average_Change=[]
-greatest_decrease=[]
+greatest_decrease=0
 greatest_dec_date=" "
 greatest_inc_date=" "
-greatest_increase=[]
+greatest_increase=0
 
 #Givin access to read the CSV
 with open(filecsv, newline='') as filecsv:
@@ -27,33 +27,32 @@ with open(filecsv, newline='') as filecsv:
     # find average change
     for x in range(1, len(Total_Profits)):
         Average_Change.append((int(Total_Profits[x]) - int(Total_Profits[x-1])))
+        greatest_decrease=min(Average_Change)
+        greatest_increase=max(Average_Change)
     # calculate average revenue change
-    Average_Change = sum(Average_Change) / len(Average_Change)
-    
+        changebymonths = sum(Average_Change) / len(Average_Change)
 
 # greatest increase in revenue
-greatest_increase = max([Average_Change])
+#greatest_increase = max([changebymonths])
 # greatest decrease in revenue
-greatest_decrease = min([Average_Change])
- 
+#greatest_decrease = min([changebymonths])
+
  #aquí si le quito los corchetes me sale un error de "float is not iterable", pero no me corre el max y el min
 
 
 print(f"Total Months:{len(Total_Months)}")
 print(f"Total Profits:{sum(Total_Profits)}")
-print("Average change: " + "$" + str(Average_Change))
-#print(f"The greatest increase is: {greatest_increase}")
-#print(f"the greatest decrease is: {greatest_decrease}")
+print("Average change: " + "$" + str(changebymonths))
+print(f"The greatest decrease is {greatest_decrease}")
+print(f"The greatest increase is {greatest_increase}")
 
 
 # output to a text file
-#file = open("Financial Analysis.txt","w")
-#file.write("Financial Analysis" + "\n")
-#file.write("...................................................................................." + "\n")
-#file.write(f"Total Months:{len(Total_Months)}"+ "\n")
-#file.write(f"Total Profits:{sum(Total_Profits)}"+ "\n")
-#file.write("Average change: " + "$" + str(Average_Change)+ "\n")
-
-#file.write("Greatest Increase in Profits: 
-#file.write("Greatest Decrease in Profits: 
-#file.close()
+file = open("Financial Analysis.txt","w")
+file.write("Financial Analysis" + "\n")
+file.write("...................................................................................." + "\n")
+file.write(f"Total Months:{len(Total_Months)}"+ "\n")
+file.write(f"Total Profits:{sum(Total_Profits)}"+ "\n")
+file.write("Average change: " + "$" + str(changebymonths)+ "\n")
+file.write(f"The greatest decrease is {greatest_decrease}"+ "\n")
+file.write(f"The greatest increase is {greatest_increase}"+ "\n")
